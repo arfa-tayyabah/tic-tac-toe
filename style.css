@@ -1,3 +1,7 @@
+html {
+    font-size: clamp(8px, 2.2vmin, 16px);
+}
+
 body {
     background: linear-gradient(135deg, #3C096C, #240046);
     min-height: 100vh;
@@ -10,11 +14,12 @@ body {
 }
 
 .game-container {
-    width: 70vmin;
-    height: 70vmin;
+    width: 92vmin;
+    max-width: 26.25rem;
+    height: fit-content;
     text-align: center;
     background: rgba(157, 78, 221, 0.1);
-    padding: 20px;
+    padding: 1.25rem 0.9rem;
 }
 
 .game-board {
@@ -35,10 +40,10 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 48px;
+    font-size: 3rem;
     font-weight: bold;
-    border-right: 4px solid rgba(255, 109, 0, 1);
-    border-bottom: 3px solid rgba(255, 109, 0, 1);
+    border-right: 0.25rem solid rgba(255, 109, 0, 1);
+    border-bottom: 0.19rem solid rgba(255, 109, 0, 1);
 }
 
 .box:nth-child(3n) { border-right: none; }
@@ -53,37 +58,37 @@ body {
 .score-board {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    margin-bottom: 30px;
-    padding: 15px 20px;
+    gap: 2.5rem;
+    margin-bottom: 1.875rem;
+    padding: 0.9rem 1.25rem;
     background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 12px;
+    border: 0.0625rem solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.75rem;
 }
 
 .player-x-score, .player-o-score {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: 8px 20px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.0625rem;
+    padding: 0.5rem 1.25rem;
     color: rgba(255, 255, 255, 0.85);
 }
 
 #score-x {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    margin-left: 10px;
-    padding: 0 5px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.0625rem;
+    margin-left: 0.625rem;
+    padding: 0 0.3rem;
     color: #FF9E00;
 }
 
 #score-o {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    margin-left: 10px;
-    padding: 0 5px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.0625rem;
+    margin-left: 0.625rem;
+    padding: 0 0.3rem;
     color: #c77dff;
 }
 
@@ -91,29 +96,29 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 15px;
-    margin-bottom: 20px;
-    gap: 45px;
+    margin-top: 0.9rem;
+    margin-bottom: 1.25rem;
+    gap: 2.8rem;
     width: auto;
 }
 
 #play-btn, #reset-btn {
     background: linear-gradient(135deg, #7b2fbe, #4a1878);
-    box-shadow: 0 0 12px rgba(180, 100, 255, 0.3);
+    box-shadow: 0 0 0.75rem rgba(180, 100, 255, 0.3);
     color: white;
     border: none;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: bold;
-    border-radius: 30px;
+    border-radius: 1.875rem;
     cursor: pointer;
     transition: all 0.3s;
-    padding: 8px 25px;
-    width: 150px;
+    padding: 0.5rem 1.5rem;
+    width: 9.375rem;
 }
 
 #play-btn:hover, #reset-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(180, 100, 255, 0.5);
+    box-shadow: 0 0 1.25rem rgba(180, 100, 255, 0.5);
 }
 
 .win-message {
@@ -123,45 +128,49 @@ body {
     transform: translate(-50%, -50%);
     color: #fff;
     background: rgba(157, 78, 221, 0.2);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(199, 125, 255, 0.3);
-    padding: 30px 50px;
-    border-radius: 15px;
-    font-size: 60px;
+    backdrop-filter: blur(0.75rem);
+    border: 0.0625rem solid rgba(199, 125, 255, 0.3);
+    padding: 1.875rem 3rem;
+    border-radius: 0.9rem;
+    font-size: 3.75rem;
     font-weight: bold;
     text-align: center;
-    text-shadow: 0 0 20px rgba(199, 125, 255, 0.8);
+    text-shadow: 0 0 1.25rem rgba(199, 125, 255, 0.8);
     display: none;
     white-space: nowrap;
+    width: 90vw;
+    max-width: 40rem;
+    box-sizing: border-box;
 }
 
 .x-sym {
     color: transparent;
-    -webkit-text-stroke: 3px #FF9E00;
-    text-shadow: 0 2px 0 #FF6D00, 0 4px 0 #7a5500;
-    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.5));
+    -webkit-text-stroke: 0.19rem #FF9E00;
+    text-shadow: 0 0.125rem 0 #FF6D00, 0 0.25rem 0 #7a5500;
+    filter: drop-shadow(0 0 0.375rem rgba(255, 215, 0, 0.5));
 }
 
 .o-sym {
     color: transparent;
-    -webkit-text-stroke: 3px #c77dff;
-    text-shadow: 0 2px 0 #7b2fbe, 0 4px 0 #4a1878;
-    filter: drop-shadow(0 0 6px rgba(180, 100, 255, 0.5));
-    
+    -webkit-text-stroke: 0.19rem #c77dff;
+    text-shadow: 0 0.125rem 0 #7b2fbe, 0 0.25rem 0 #4a1878;
+    filter: drop-shadow(0 0 0.375rem rgba(180, 100, 255, 0.5));
 }
+
 .score-board, #play-btn, #reset-btn {
     font-family: 'Trebuchet MS', sans-serif;
 }
 
 .win-message, #score-x, #score-o {
     font-family: Impact, sans-serif;
-    letter-spacing: 5px;
+    letter-spacing: 0.3rem;
 }
+
 .box.win-cell {
     text-decoration: line-through;
-    text-decoration-thickness: 5px;
+    text-decoration-thickness: 0.3rem;
     text-decoration-color: #ee00ff;
-    -webkit-text-stroke: 2px #ee00ff;
+    -webkit-text-stroke: 0.125rem #ee00ff;
     color: transparent;
     position: relative;
 }
