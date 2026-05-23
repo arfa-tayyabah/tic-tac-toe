@@ -12,6 +12,11 @@ const msgDiv = document.querySelector(".win-message");
 const scoreXSpan = document.getElementById("score-x");
 const scoreOSpan = document.getElementById("score-o");
 
+const winMusic = new Audio('win.wav');
+const btnSound = new Audio('btn.wav');
+
+ 
+
 buttons.forEach(btn => {
     btn.addEventListener("click", () => {
         if (!gameActive) return;
@@ -19,9 +24,11 @@ buttons.forEach(btn => {
         if (btn.innerText === "") {
             if (isXturn) {
                 btn.innerText = 'X';
+                btn.classList.add('x-sym');
                 isXturn = false;
             } else {
                 btn.innerText = 'O';
+                btn.classList.add('o-sym');
                 isXturn = true;
             }
             checkWin();
@@ -31,7 +38,8 @@ buttons.forEach(btn => {
 
 function checkWin() {
     let winner = null;
-    
+    let winningPattern = null;
+
     for (let pattern of WinPattern) {
         const val0 = buttons[pattern[0]].innerText;
         const val1 = buttons[pattern[1]].innerText;
@@ -39,11 +47,16 @@ function checkWin() {
 
         if (val0 !== "" && val1 !== "" && val2 !== "" && val0 === val1 && val1 === val2) {
             winner = val0;
+            winningPattern = pattern;
             break;
         }
     }
     
     if (winner) {
+
+        winningPattern.forEach(index => {
+            buttons[index].classList.add('win-cell');
+        });
         if (winner === 'X') {
             xScore++;
             scoreXSpan.textContent = xScore;
@@ -53,8 +66,12 @@ function checkWin() {
         }
         
         gameActive = false;
-        showMessage(`Player ${winner} wins! 🎉`);
-        disableAllButtons();
+        setTimeout(()=>{
+            winMusic.play();
+            showMessage(`Player ${winner} wins! 🎉`);
+            disableAllButtons();
+        }, 500);
+        
         return;
     }
     
@@ -68,6 +85,7 @@ function checkWin() {
     
     if (isTie) {
         gameActive = false;
+        winMusic.play();
         showMessage("It's a Tie! 🤝");
         disableAllButtons();
     }
@@ -92,7 +110,7 @@ function showMessage(message) {
     setTimeout(() => {
         msgDiv.style.display = "none";
         resetGame();
-    }, 1500);
+    }, 2000);
 }
 
 function resetGame() {
@@ -102,6 +120,7 @@ function resetGame() {
     buttons.forEach(btn => {
         btn.innerText = "";
         btn.disabled = false;
+        btn.classList.remove('x-sym', 'o-sym', 'win-cell');
     });
 }
 
@@ -115,12 +134,14 @@ function newGame() {
 
 if (resetBtn) {
     resetBtn.addEventListener("click", () => {
+        btnSound.play();
         resetGame();
     });
 }
 
 if (playBtn) {
     playBtn.addEventListener("click", () => {
+         btnSound.play();
         newGame();
     });
 }

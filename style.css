@@ -1,21 +1,20 @@
 body {
-    background: #03045E;
+    background: linear-gradient(135deg, #3C096C, #240046);
     min-height: 100vh;
     margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
 .game-container {
     width: 70vmin;
     height: 70vmin;
     text-align: center;
-    background: rgba(0, 180, 216, 0.4);
+    background: rgba(157, 78, 221, 0.1);
     padding: 20px;
-    border-radius: 15px;
 }
 
 .game-board {
@@ -24,31 +23,41 @@ body {
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 15vmin);
-    gap: 5px;
     justify-content: center;
     align-items: center;
 }
+
 .box {
-    background-color: #CAF0F8;
+    background: transparent;
     height: 15vmin;
     width: 15vmin;
-    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.2s ease;
     font-size: 48px;
     font-weight: bold;
-    box-shadow: 2px 2px 2px #03045E;
+    border-right: 4px solid rgba(255, 109, 0, 1);
+    border-bottom: 3px solid rgba(255, 109, 0, 1);
 }
+
+.box:nth-child(3n) { border-right: none; }
+.box:nth-child(n+7) { border-bottom: none; }
+.box:nth-child(3n+1) { border-left: none; }
+.box:nth-child(-n+3) { border-top: none; }
+
+.box:hover:not(.x-sym):not(.o-sym) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
 .score-board {
     display: flex;
     justify-content: center;
     gap: 40px;
     margin-bottom: 30px;
     padding: 15px 20px;
-    background: rgba(144, 224, 239, 0.8);
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
 }
 
@@ -57,17 +66,27 @@ body {
     font-weight: 600;
     letter-spacing: 1px;
     padding: 8px 20px;
-    color: #03045E;
+    color: rgba(255, 255, 255, 0.85);
 }
 
-#score-x, #score-o {
+#score-x {
     font-size: 20px;
     font-weight: 600;
     letter-spacing: 1px;
     margin-left: 10px;
     padding: 0 5px;
-    color: #003d83;
+    color: #FF9E00;
 }
+
+#score-o {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-left: 10px;
+    padding: 0 5px;
+    color: #c77dff;
+}
+
 .footer {
     display: flex;
     justify-content: center;
@@ -77,8 +96,10 @@ body {
     gap: 45px;
     width: auto;
 }
+
 #play-btn, #reset-btn {
-    background: linear-gradient(135deg, #00B4D8, #0077B6);
+    background: linear-gradient(135deg, #7b2fbe, #4a1878);
+    box-shadow: 0 0 12px rgba(180, 100, 255, 0.3);
     color: white;
     border: none;
     font-size: 16px;
@@ -90,8 +111,9 @@ body {
     width: 150px;
 }
 
-#play-btn:hover,  #reset-btn:hover {
+#play-btn:hover, #reset-btn:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(180, 100, 255, 0.5);
 }
 
 .win-message {
@@ -99,11 +121,47 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #03045E;
+    color: #fff;
+    background: rgba(157, 78, 221, 0.2);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(199, 125, 255, 0.3);
+    padding: 30px 50px;
     border-radius: 15px;
     font-size: 60px;
     font-weight: bold;
     text-align: center;
+    text-shadow: 0 0 20px rgba(199, 125, 255, 0.8);
     display: none;
     white-space: nowrap;
+}
+
+.x-sym {
+    color: transparent;
+    -webkit-text-stroke: 3px #FF9E00;
+    text-shadow: 0 2px 0 #FF6D00, 0 4px 0 #7a5500;
+    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.5));
+}
+
+.o-sym {
+    color: transparent;
+    -webkit-text-stroke: 3px #c77dff;
+    text-shadow: 0 2px 0 #7b2fbe, 0 4px 0 #4a1878;
+    filter: drop-shadow(0 0 6px rgba(180, 100, 255, 0.5));
+    
+}
+.score-board, #play-btn, #reset-btn {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.win-message, #score-x, #score-o {
+    font-family: Impact, sans-serif;
+    letter-spacing: 5px;
+}
+.box.win-cell {
+    text-decoration: line-through;
+    text-decoration-thickness: 5px;
+    text-decoration-color: #ee00ff;
+    -webkit-text-stroke: 2px #ee00ff;
+    color: transparent;
+    position: relative;
 }
